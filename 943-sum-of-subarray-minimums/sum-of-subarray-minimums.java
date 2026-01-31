@@ -4,7 +4,7 @@ class Solution {
         int[] nse = findNSE(arr);
         int[] pse = findPSE(arr);
 
-        int mod = 1_000_000_007;
+        int mod =(int) 1e9+7;
         long total = 0;
 
         for (int i = 0; i < n; i++) {
