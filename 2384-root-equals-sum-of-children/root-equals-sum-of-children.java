@@ -15,18 +15,20 @@
  */
 class Solution {
     public boolean checkTree(TreeNode root) {
-        Queue<TreeNode> q=new LinkedList<>();
+        // Queue<TreeNode> q=new LinkedList<>();
 
-        q.offer(root);
-        int sum=0;
-        while(!q.isEmpty())
-        {
-            TreeNode node=q.poll();
+        // q.offer(root);
+        // int sum=0;
+        // while(!q.isEmpty())
+        // {
+        //     TreeNode node=q.poll();
 
-            if(node.left!=null) sum+=node.left.val;
-            if(node.right!=null) sum+=node.right.val;
-        }
-        if(sum==root.val) return true;
-        else return false;
+        //     if(node.left!=null) sum+=node.left.val;
+        //     if(node.right!=null) sum+=node.right.val;
+        // }
+        // if(sum==root.val) return true;
+        // else return false;
+
+        return root.val == root.left.val + root.right.val;
     }
 }
