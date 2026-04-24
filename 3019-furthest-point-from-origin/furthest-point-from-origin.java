@@ -14,9 +14,8 @@ class Solution {
             for(int i=0;i<moves.length();i++)
             {
                 char ch=moves.charAt(i);
-                if(ch=='L') cnt++;
+                if(ch=='L' || ch=='_') cnt++;
                 else if(ch=='R') cnt--;
-                if(ch=='_') cnt++;
             }
         }
         else
@@ -25,8 +24,7 @@ class Solution {
             {
                 char ch=moves.charAt(i);
                 if(ch=='L') cnt--;
-                else if(ch=='R') cnt++;
-                if(ch=='_') cnt++;
+                else if(ch=='R' || ch=='_') cnt++;
             }
         }
         return cnt;
