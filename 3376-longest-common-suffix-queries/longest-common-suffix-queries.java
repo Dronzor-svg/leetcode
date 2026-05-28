@@ -1,56 +1,79 @@
 class Solution {
+
     class TrieNode {
         TrieNode[] children = new TrieNode[26];
-        int bestLen = Integer.MAX_VALUE;
-        int bestIdx = Integer.MAX_VALUE;
+
+        // best index for this suffix
+        int idx = -1;
+
+        // shortest length
+        int len = Integer.MAX_VALUE;
+    }
+
+    TrieNode root = new TrieNode();
+
+    // Insert reversed word into trie
+    private void insert(String word, int index) {
+
+        TrieNode node = root;
+
+        // Update root info
+        if (word.length() < node.len) {
+            node.len = word.length();
+            node.idx = index;
+        }
+
+        for (int i = word.length() - 1; i >= 0; i--) {
+
+            int ch = word.charAt(i) - 'a';
+
+            if (node.children[ch] == null) {
+                node.children[ch] = new TrieNode();
+            }
+
+            node = node.children[ch];
+
+            // Keep shortest length word
+            if (word.length() < node.len) {
+                node.len = word.length();
+                node.idx = index;
+            }
+        }
+    }
+
+    // Search longest suffix match
+    private int search(String word) {
+
+        TrieNode node = root;
+
+        for (int i = word.length() - 1; i >= 0; i--) {
+
+            int ch = word.charAt(i) - 'a';
+
+            if (node.children[ch] == null) {
+                break;
+            }
+
+            node = node.children[ch];
+        }
+
+        return node.idx;
     }
 
     public int[] stringIndices(String[] wordsContainer, String[] wordsQuery) {
-        TrieNode root = new TrieNode();
-        
+
+        // Build Trie
         for (int i = 0; i < wordsContainer.length; i++) {
-            String word = wordsContainer[i];
-            int len = word.length();
-            TrieNode curr = root;
-            
-            if (len < curr.bestLen || (len == curr.bestLen && i < curr.bestIdx)) {
-                curr.bestLen = len;
-                curr.bestIdx = i;
-            }
-            
-            for (int j = len - 1; j >= 0; j--) {
-                int charIdx = word.charAt(j) - 'a';
-                
-                if (curr.children[charIdx] == null) {
-                    curr.children[charIdx] = new TrieNode();
-                }
-                
-                curr = curr.children[charIdx];
-                
-                if (len < curr.bestLen || (len == curr.bestLen && i < curr.bestIdx)) {
-                    curr.bestLen = len;
-                    curr.bestIdx = i;
-                }
-            }
+            insert(wordsContainer[i], i);
         }
-        
+
         int[] ans = new int[wordsQuery.length];
-        
+
+        // Process queries
         for (int i = 0; i < wordsQuery.length; i++) {
-            String query = wordsQuery[i];
-            int len = query.length();
-            TrieNode curr = root;
-            
-            for (int j = len - 1; j >= 0; j--) {
-                int charIdx = query.charAt(j) - 'a';
-                if (curr.children[charIdx] == null) {
-                    break;
-                }
-                curr = curr.children[charIdx];
-            }
-            ans[i] = curr.bestIdx;
+            ans[i] = search(wordsQuery[i]);
         }
-        
+
         return ans;
     }
-} 
+}
