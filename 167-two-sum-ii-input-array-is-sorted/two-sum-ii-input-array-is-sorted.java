@@ -20,9 +20,7 @@ class Solution {
 
             else 
             {
-                ans[0]=left+1;
-                ans[1]=right+1;
-                break;
+                return new int[]{left + 1, right + 1};
             }
         }
         return ans;
