@@ -5,7 +5,8 @@ class Solution {
         int su = 0;
         int start = 0;
         
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < n; i++)
+        {
             total+= gas[i] - cost[i];
             su += gas[i] - cost[i];
             if(su < 0){
