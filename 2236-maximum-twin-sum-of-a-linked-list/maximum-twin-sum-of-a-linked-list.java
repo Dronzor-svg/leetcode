@@ -12,7 +12,7 @@ class Solution {
     public int pairSum(ListNode head) {
         int cnt=0;
         ListNode temp=head;
-        ListNode dummynode=null;
+
         int max=0;
         while(temp!=null)
         {
