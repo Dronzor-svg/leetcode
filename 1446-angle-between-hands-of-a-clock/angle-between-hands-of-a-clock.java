@@ -3,10 +3,7 @@ class Solution {
         double angle = Math.abs(30 * hour - 5.5 * minutes);
         angle = Math.min(angle, 360 - angle);
 
-        if(angle>180)
-        {
-            angle=360-angle;
-        }
+       
         return angle;
 
     }
