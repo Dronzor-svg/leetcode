@@ -12,12 +12,12 @@ class Solution {
                 if(nums[j]==target)
                 {
                     cnt++;
-                    
-                    if((2*cnt)>list.size())
-                    {
-                        ans++;
-                    }
                 }
+                if((2*cnt)>list.size())
+                {
+                    ans++;
+                }
+                
                 else
                 {
                     if((2*cnt)>list.size())
