@@ -13,9 +13,9 @@ class Solution {
 
         HashSet<Integer> set=new HashSet<>();
 
-        for(int i=0;i<nums.length;i++)
+        for(int i : nums)
         {
-            set.add(nums[i]);
+            set.add(i);
         }
         ListNode temp=head;
 
